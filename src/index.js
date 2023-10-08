@@ -3,8 +3,9 @@ module.exports = function check(str, bracketsConfig) {
   bracketsConfig.forEach(([key, value]) => bracketsConfigMap.set(value, key));
   str = str.split("");
   let stack = [];
+  let arrFromMapValues = Array.from(bracketsConfigMap.values());
   for (let i = 0; i < str.length; i++) {
-    if (Array.from(bracketsConfigMap.values()).includes(str[i])) {
+    if (arrFromMapValues.includes(str[i])) {
       bracketsConfigMap.get(str[i]) === str[i] && stack.includes(str[i])
         ? stack.pop()
         : stack.push(str[i]);
